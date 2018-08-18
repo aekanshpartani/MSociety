@@ -17,4 +17,9 @@ class Owner extends Model
     {
         return $this->belongsTo('App\Society');
     }
+
+
+    public function guest(){
+        return $this->hasMany('App\Guest');
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\UsersEditRequest;
 use App\Http\Requests\UsersRequest;
 use App\Photo;
 use App\Role;
+use App\Security;
 use App\Society;
 use App\User;
 use App\Owner;
@@ -68,6 +69,15 @@ class AdminUsersController extends Controller
             $owner->phone_no = $request->get('phone_no');
             $owner->save();
             Session::flash('created_user', 'The Owner User has been created');
+        }
+
+        if($user->role_id == 2){
+            $security = new Security();
+            $security->user_id = $user->id;
+            $security->society_id = $request->get('society_id');
+            $security->phone_no = $request->get('phone_no');
+            $security->save();
+            Session::flash('created_user', 'The Security User has been created');
         }
 
         return redirect('/admin/users');

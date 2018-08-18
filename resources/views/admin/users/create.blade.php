@@ -119,6 +119,7 @@
                     case 2:
                         $("#phone_no").show();
                         $("#society_id").show();
+                        $('#flat_no').hide();
                         break;
                     case 3:
                         $("#phone_no").show();

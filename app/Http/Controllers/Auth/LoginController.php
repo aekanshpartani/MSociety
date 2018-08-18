@@ -42,6 +42,8 @@ class LoginController extends Controller
             return redirect()->route('admin.admin') ;
         }elseif($user->role->name=='owner'){
             return redirect()->route('owner.index') ;
+        }elseif($user->role->name=='security'){
+            return redirect()->route('security.index') ;
         }
     }
 }

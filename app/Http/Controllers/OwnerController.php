@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Guest;
 use App\Http\Requests\OwnerCreateRequest;
 use App\Owner;
 use App\Society;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class OwnerController extends Controller
@@ -18,7 +20,10 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        return view('owner.index');
+        $uid =  Auth::user()->id;
+        $owner_id = Owner::where('user_id', $uid)->pluck('id')->first();
+        $guests = Guest::all()->where('owner_id',$owner_id);
+        return view('owner.index', compact('guests'));
 
     }
 
@@ -103,5 +108,12 @@ class OwnerController extends Controller
     public function destroy(Owner $owner)
     {
         //
+    }
+
+    public function approve($id){
+        $guest = Guest::where('id', $id)->update(array('is_approved' => 1));
+        if($guest)
+            Session::flash('approved_guest', 'Your guest is approved');
+        return redirect('/owner');
     }
 }

@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware'=>'admin', 'as' => 'admin.'], function (){
     Route::resource('/admin/users', 'AdminUsersController');
     Route::resource('/admin/society', 'AdminSocietyController');
+    Route::resource('/admin/guests', 'AdminGuestsController');
     Route::get('/admin', function (){
         return view('admin.index');
     })->name('admin');
@@ -29,6 +30,10 @@ Route::group(['middleware'=>'admin', 'as' => 'admin.'], function (){
 
 Route::group(['middleware'=>'owner'], function (){
     Route::resource('/owner', 'OwnerController')->except(['show', 'store']);
+});
+
+Route::group(['middleware'=>'security'], function (){
+    Route::resource('/security', 'SecurityController');
 });
 
 Route::get('/society-register', function (){
@@ -42,3 +47,5 @@ Route::post('sign-up-user', [
 Route::get('sign-up', [
     'uses' => 'OwnerController@show'
 ]);
+
+Route::get('/owner/approve/{id}', 'OwnerController@approve');

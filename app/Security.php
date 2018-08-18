@@ -16,6 +16,6 @@ class Security extends Model
 
     public function society()
     {
-        return $this->belongsTo('App\Society');
+        return $this->hasOne('App\Society');
     }
 }

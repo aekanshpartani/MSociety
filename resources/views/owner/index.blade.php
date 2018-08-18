@@ -10,11 +10,53 @@
 @section('content')
 
     <div class="container-fluid">
-        <div class="block-header">
-            <h2>Dashboard</h2>
-        </div>
-    </div>
 
+        @if(Session::has('approved_guest'))
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{session('approved_guest')}}</strong>
+            </div>
+        @endif
+        <div><h2>Guests Approvals</h2></div>
+    </div>
+    <!-- Basic Example -->
+    <div class="row clearfix">
+        @if($guests)
+            @foreach($guests as $guest)
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="card">
+                        <div class="header {{$guest->is_approved == 0 ? 'bg-red' : 'bg-green'}}">
+                            <h2>
+                                {{$guest->name}}
+                            </h2>
+                            <div class="pull-right">
+                                @if($guest->is_approved == 0)
+                                    {!!Form::open(['url' =>'/owner/approve/'.$guest->id, 'method' => 'GET'])!!}
+                                    {{Form::hidden('_method', 'APPROVE')}}
+                                    {{Form::submit('APPROVE', ['class' => 'btn btn-primary'])}}
+                                    {!!Form::close()!!}
+                                @endif
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <strong>Reason: </strong>{{$guest->reason}}
+                            </div>
+                            <div class="row">
+                                <strong>Requested At: </strong>{{$guest->created_at->diffForHumans()}}
+                            </div>
+                            <div class="row">
+                                @if($guest->is_approved == 1)
+                                    <strong>Approved At: </strong>{{$guest->updated_at->diffForHumans()}}
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
+
+    </div>
 
 @stop
 

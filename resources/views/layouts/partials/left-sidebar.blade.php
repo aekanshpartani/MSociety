@@ -49,6 +49,7 @@
             @elseif(Auth::user()->role->name =='owner')
                 @include('layouts.partials.owner-menu')
             @elseif(Auth::user()->role->name =='security')
+                @include('layouts.partials.security-menu')
             @endif
 
             {{--<li>--}}
