@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UsersEditRequest;
 use App\Http\Requests\UsersRequest;
+use App\Manager;
 use App\Photo;
 use App\Role;
 use App\Security;
@@ -60,6 +61,15 @@ class AdminUsersController extends Controller
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->save();
+
+        if($user->role_id == 4){
+            $manager = new Manager();
+            $manager->user_id = $user->id;
+            $manager->society_id = $request->get('society_id');
+            $manager->phone_no = $request->get('phone_no');
+            $manager->save();
+            Session::flash('created_user', 'The Manager User has been created');
+        }
 
         if($user->role_id == 3){
             $owner = new Owner();

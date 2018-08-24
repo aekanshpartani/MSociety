@@ -7,8 +7,11 @@
     <!-- Wait Me Css -->
     <link href="{{ URL::asset('bsb/plugins/waitme/waitMe.css')}}" rel="stylesheet" />
 
+
+
     <!-- Bootstrap Select Css -->
     <link href="{{ URL::asset('bsb/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+
 @stop
 
 @section('content')
@@ -80,7 +83,9 @@
                         </span>
                     <div class="form-line">
                         {!! Form::password('password', ['class' => 'form-control', 'required', 'placeholder'=>'Password','pattern' =>'(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}', 'minlength'=>8]) !!}
+
                     </div>
+                    <span>Password must contain a capital letter, a number and a special character ( 8 digits minimum).</span>
                 </div>
                 <div class="input-group">
                         <span class="input-group-addon">

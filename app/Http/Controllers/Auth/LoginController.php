@@ -40,6 +40,8 @@ class LoginController extends Controller
     public function authenticated($request , $user){
         if($user->role->name=='administrator'){
             return redirect()->route('admin.admin') ;
+        }elseif($user->role->name=='manager'){
+            return redirect()->route('manager.manager.index') ;
         }elseif($user->role->name=='owner'){
             return redirect()->route('owner.index') ;
         }elseif($user->role->name=='security'){

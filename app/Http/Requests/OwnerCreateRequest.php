@@ -24,7 +24,7 @@ class OwnerCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|min:3|max:50',
+            'name'=>'required|min:3|max:50|regex:/^[a-zA-Z]+$/u',
             'email'=>'required|email|unique:users',
             'phone_no'=>'required|unique:owners',
             'flat_no'=>'required',

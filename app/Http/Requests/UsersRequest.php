@@ -55,6 +55,17 @@ class UsersRequest extends FormRequest
                 'password'=>'required'
             ];
         }
+        elseif($this->request->get('role_id') == 4){
+            return [
+                'name'=>'required|min:3|max:50|regex:/^[a-zA-Z]+$/u',
+                'email'=>'required|email|unique:users',
+                'role_id'=>'required',
+                'phone_no'=>'required|unique:managers',
+                'society_id'=>'required',
+                'is_active'=>'required',
+                'password'=>'required'
+            ];
+        }
 
     }
 }

@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('display');
+})->name('main');
 
 Auth::routes();
 
@@ -28,8 +28,15 @@ Route::group(['middleware'=>'admin', 'as' => 'admin.'], function (){
     })->name('admin');
 });
 
+Route::group(['middleware'=>'manager', 'as' => 'manager.'], function (){
+    Route::resource('/manager', 'ManagerController')->except(['show', 'store']);
+    Route::resource('/admin/owners', 'ManagerOwnersController');
+    Route::resource('/admin/security', 'ManagerSecurityController');
+});
+
 Route::group(['middleware'=>'owner'], function (){
     Route::resource('/owner', 'OwnerController')->except(['show', 'store']);
+    Route::get('/owner/approve/{id}', 'OwnerController@approve');
 });
 
 Route::group(['middleware'=>'security'], function (){
@@ -48,4 +55,6 @@ Route::get('sign-up', [
     'uses' => 'OwnerController@show'
 ]);
 
-Route::get('/owner/approve/{id}', 'OwnerController@approve');
+Route::get('/demo', function (){
+    return view('demo');
+});

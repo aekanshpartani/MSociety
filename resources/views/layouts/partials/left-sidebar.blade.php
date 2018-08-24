@@ -34,6 +34,8 @@
 
                     @if(Auth::user()->role->name == 'administrator')
                         <a href="{{url('/admin')}}">
+                    @elseif(Auth::user()->role->name =='manager')
+                        <a href="{{url('/manager')}}">
                     @elseif(Auth::user()->role->name =='owner')
                         <a href="{{url('/owner')}}">
                     @elseif(Auth::user()->role->name =='security')
@@ -46,6 +48,8 @@
 
             @if(Auth::user()->role->name == 'administrator')
                 @include('layouts.partials.admin-menu')
+            @elseif(Auth::user()->role->name =='manager')
+                @include('layouts.partials.manager-menu')
             @elseif(Auth::user()->role->name =='owner')
                 @include('layouts.partials.owner-menu')
             @elseif(Auth::user()->role->name =='security')

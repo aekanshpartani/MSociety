@@ -43,11 +43,13 @@
                                 <strong>Reason: </strong>{{$guest->reason}}
                             </div>
                             <div class="row">
-                                <strong>Requested At: </strong>{{$guest->created_at->diffForHumans()}}
+                                <strong>Requested At: </strong>{{$guest->created_at}}
                             </div>
                             <div class="row">
                                 @if($guest->is_approved == 1)
-                                    <strong>Approved At: </strong>{{$guest->updated_at->diffForHumans()}}
+                                    <strong>Approved At: </strong>{{$guest->updated_at}}
+                                @else
+                                    <strong>Waiting for Approval</strong>
                                 @endif
                             </div>
                         </div>

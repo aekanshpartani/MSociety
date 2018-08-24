@@ -45,6 +45,14 @@ class User extends Authenticatable
 
     }
 
+    public function isManager(){
+        if($this->role->name == "manager" && $this->is_active == 1)
+            return true;
+        else
+            return false;
+
+    }
+
     public function isOwner(){
         if($this->role->name == "owner" && $this->is_active == 1)
             return true;

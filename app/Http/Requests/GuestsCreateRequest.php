@@ -26,7 +26,7 @@ class GuestsCreateRequest extends FormRequest
         return [
             'name'=>'required|regex:/^[a-zA-Z]+$/u|max:255|min:3',
             'owner_id'=>'required',
-            'phone_no'=>'',
+            'phone_no'=>'required|max:10',
             'reason'=>'required|regex:/^[a-zA-Z]+$/u|max:255|min:3'
         ];
     }
