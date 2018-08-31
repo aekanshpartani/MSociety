@@ -28,7 +28,7 @@
         @if($owners)
             @foreach($owners as $owner)
                 <tr>
-                    <td>{{$owner->user->name}}</td>
+                    <td><a href="{{route('manager.owners.edit', $owner->user_id)}}">{{$owner->user->name}}</td>
                     <td>{{$owner->user->email}}</td>
                     <td>{{$owner->flat_no}}</td>
                     <td>{{$owner->phone_no}}</td>

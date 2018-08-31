@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Manager;
 use App\Owner;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -60,7 +61,7 @@ class ManagerOwnersController extends Controller
         Session::flash('created_owner', 'The Owner has been created');
 
 
-        return redirect('/admin/users');
+        return redirect('/manager/owners');
     }
 
     /**
@@ -82,7 +83,9 @@ class ManagerOwnersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::where('role_id', 3)->findOrFail($id);
+        $owner = Owner::where('user_id', $id)->first();
+        return view('manager.owners.edit', compact('user', 'owner'));
     }
 
     /**
@@ -94,7 +97,21 @@ class ManagerOwnersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $flat = $request->flat_no;
+        $phone = $request->phone_no;
+        $owner = Owner::where('user_id', $id)->update(['flat_no' => $flat, 'phone_no' => $phone]);
+
+        if(trim($request->password) == ''){
+            $input = $request->except('password');
+        }
+        else{
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+        }
+        $user->update($input);
+        Session::flash('edited_owner', 'The Owner details has been updated');
+        return redirect('/manager/owners');
     }
 
     /**

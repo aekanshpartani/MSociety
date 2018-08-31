@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Manager | Edit Owners')
+@section('title', 'Manager | Edit Security')
 
 @section('extra-css')
 
@@ -31,7 +31,7 @@
                         <h2>Edit Details</h2>
                     </div>
                     <div class="body">
-                        {!! Form::model($user, ['method'=>'PATCH', 'action'=> ['ManagerOwnersController@update', $user->id], 'onsubmit' => 'return ConfirmDelete()']) !!}
+                        {!! Form::model($user, ['method'=>'PATCH', 'action'=> ['ManagerSecurityController@update', $user->id], 'onsubmit' => 'return ConfirmDelete()']) !!}
 
                         <div class="form-group">
                             {!! Form::label('name', 'Name:') !!}
@@ -45,12 +45,7 @@
 
                         <div class="form-group">
                             {!! Form::label('phone_no', 'Phone No.:') !!}
-                            {!! Form::text('phone_no', ( isset($owner->phone_no) ? $owner->phone_no : null ), array('class'=>'form-control' )) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('flat_no', 'Flat No.:') !!}
-                            {!! Form::text('flat_no', ( isset($owner->flat_no) ? $owner->flat_no : null ), array('class'=>'form-control' )) !!}
+                            {!! Form::text('phone_no', ( isset($security->phone_no) ? $security->phone_no : null ), array('class'=>'form-control' )) !!}
                         </div>
 
                         <div class="form-group">
@@ -64,15 +59,15 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::submit('Update User', ['class'=>'btn btn-primary waves-effect btn-large']) !!}
+                            {!! Form::submit('Update Security', ['class'=>'btn btn-primary waves-effect btn-large']) !!}
                         </div>
 
                         {!! Form::close() !!}
 
-                        {!! Form::open(['method' => 'DELETE', 'action' => ['ManagerOwnersController@destroy', $user->id], 'onsubmit' => 'return ConfirmDelete()',  'class'=>'']) !!}
+                        {!! Form::open(['method' => 'DELETE', 'action' => ['ManagerSecurityController@destroy', $user->id],'onsubmit' => 'return ConfirmDelete()', 'class'=>'']) !!}
 
                         <div class="form-group">
-                            {!! Form::submit('Delete User', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::submit('Delete Security', ['class' => 'btn btn-danger']) !!}
                         </div>
 
                         {!! Form::close() !!}
@@ -86,8 +81,7 @@
 @stop
 
 @section('extra-scripts')
-     @include('layouts.partials.confirmdelete')
-
+    @include('layouts.partials.confirmdelete')
 
     <!-- Autosize Plugin Js -->
     <script src="{{ URL::asset('bsb/plugins/autosize/autosize.js')}}"></script>
