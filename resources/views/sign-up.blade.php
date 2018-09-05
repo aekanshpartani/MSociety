@@ -31,6 +31,12 @@
                         <strong>{{session('created_owner')}}</strong>
                     </div>
                 @endif
+                @if(Session::has('new_owner'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{session('new_owner')}}</strong>
+                    </div>
+                @endif
 
                 {!! Form::open(['method' => 'POST', 'action' => 'OwnerController@store']) !!}
                 <div class="msg">Register a new membership</div>

@@ -60,6 +60,7 @@ Route::get('/demo', function (){
     return view('demo');
 });
 
-Route::get ( '/redirect/{service}', 'SocialAuthController@redirect' );
-
-Route::get ( '/callback/{service}', 'SocialAuthController@callback' );
+// OAuth Routes
+Route::get('callback/{provider}', 'SocialAuthController@callback');
+Route::get('login/{provider}', 'SocialAuthController@redirect');
+Route::get('logout', 'SocialAuthController@logout');

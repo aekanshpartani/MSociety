@@ -3,7 +3,7 @@
 @section('title', 'MySoceity - Sign In')
 
 @section('extra-css')
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 @stop
 
 @section('content')
@@ -55,9 +55,10 @@
                             <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
                         </div>
                     </div>
-
-                    <a href="redirect/google">Login in with Google</a>
-
+                    <h4>Social Logins</h4>
+                    <a href="{{ url('/login/google') }}" class="btn btn-block btn-social btn-google bg-red">
+                        <i class="fab fa-google-plus-g"></i> Sign in with Google
+                    </a>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-6">
                             <a href="{{ url('/sign-up') }}">Register Now!</a>
@@ -67,6 +68,7 @@
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
