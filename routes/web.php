@@ -32,6 +32,7 @@ Route::group(['middleware'=>'manager', 'as' => 'manager.'], function (){
     Route::resource('/manager', 'ManagerController')->except(['show', 'store']);
     Route::resource('/manager/owners', 'ManagerOwnersController');
     Route::resource('/manager/security', 'ManagerSecurityController');
+    Route::resource('/manager/notifications', 'SocietyNotificationsController');
 });
 
 Route::group(['middleware'=>'owner'], function (){
@@ -58,3 +59,7 @@ Route::get('sign-up', [
 Route::get('/demo', function (){
     return view('demo');
 });
+
+Route::get ( '/redirect/{service}', 'SocialAuthController@redirect' );
+
+Route::get ( '/callback/{service}', 'SocialAuthController@callback' );

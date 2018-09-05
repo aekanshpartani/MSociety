@@ -1,6 +1,6 @@
 <li>
     <a href="javascript:void(0);" class="menu-toggle">
-        <i class="material-icons">account_circle</i>
+        <i class="material-icons">group</i>
         <span>Owners</span>
     </a>
     <ul class="ml-menu">
@@ -16,6 +16,16 @@
     <ul class="ml-menu">
         <li><a href="{{ route('manager.security.index') }}">All Guards</a></li>
         <li><a href="{{ route('manager.security.create') }}">Add Guard</a></li>
+    </ul>
+</li>
+<li>
+    <a href="javascript:void(0);" class="menu-toggle">
+        <i class="material-icons">notifications</i>
+        <span>Notifications</span>
+    </a>
+    <ul class="ml-menu">
+        <li><a href="{{ route('manager.notifications.index') }}">History</a></li>
+        <li><a href="{{ route('manager.notifications.create') }}">Add New</a></li>
     </ul>
 </li>
 

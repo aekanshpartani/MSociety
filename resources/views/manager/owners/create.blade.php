@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Admin | Create Users')
+@section('title', 'Manager | Create Users')
 
 @section('extra-css')
 

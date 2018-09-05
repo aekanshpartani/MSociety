@@ -29,9 +29,9 @@
         </div>
     @endif
     <div class="body table-responsive">
-        <table class="table table-striped table-bordered table-hover">
+        <table class="table table-striped table-bordered">
             <thead>
-            <tr>
+            <tr class="active">
                 <th>Name</th>
                 <th>Owner Name</th>
                 <th>Flat No.</th>
@@ -45,7 +45,7 @@
             <tbody>
             @if($guests)
                 @foreach($guests as $guest)
-                    <tr>
+                    <tr class="{{$guest->is_approved == 1 ? 'success' : 'danger'}}">
                         <td>{{$guest->name}}</td>
                         <td>{{$guest->owner->user->name}}</td>
                         <td>{{$guest->owner->flat_no}}</td>

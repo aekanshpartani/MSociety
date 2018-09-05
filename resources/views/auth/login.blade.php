@@ -55,6 +55,9 @@
                             <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
                         </div>
                     </div>
+
+                    <a href="redirect/google">Login in with Google</a>
+
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-6">
                             <a href="{{ url('/sign-up') }}">Register Now!</a>

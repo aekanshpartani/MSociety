@@ -6,6 +6,7 @@ use App\Guest;
 use App\Http\Requests\OwnerCreateRequest;
 use App\Owner;
 use App\Society;
+use App\SocietyNotifications;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +23,12 @@ class OwnerController extends Controller
     {
         $uid =  Auth::user()->id;
         $owner_id = Owner::where('user_id', $uid)->pluck('id')->first();
+        $society_id = Owner::where('user_id', $uid)->pluck('society_id')->first();
+
         $guests = Guest::all()->where('owner_id',$owner_id);
-        return view('owner.index', compact('guests'));
+        $notifications = SocietyNotifications::orderBy('created_at', 'desc')->limit(5)->where('society_id',$society_id)->get();
+
+        return view('owner.index', compact('guests', 'notifications'));
 
     }
 

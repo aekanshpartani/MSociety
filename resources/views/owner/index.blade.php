@@ -19,7 +19,6 @@
         @endif
         <div><h2>Guests Approvals</h2></div>
     </div>
-    <!-- Basic Example -->
     <div class="row clearfix">
         @if($guests)
             @foreach($guests as $guest)
@@ -52,6 +51,34 @@
                                     <strong>Waiting for Approval</strong>
                                 @endif
                             </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
+
+    </div>
+
+
+
+
+    <div class="container-fluid">
+        <div><h2>Society Notifications</h2></div>
+    </div>
+    <div class="row clearfix">
+        @if($notifications)
+            @foreach($notifications as $notification)
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-blue">
+                            <h2>
+                                {{$notification->title}}
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <p>
+                                {{$notification->description}}
+                            </p>
                         </div>
                     </div>
                 </div>
