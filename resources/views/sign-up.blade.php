@@ -3,7 +3,11 @@
 @section('title', 'MySoceity - Sign Up')
 
 @section('extra-css')
-
+    <style>
+        body{
+            background-color: teal !important;
+        }
+    </style>
     <!-- Wait Me Css -->
     <link href="{{ URL::asset('bsb/plugins/waitme/waitMe.css')}}" rel="stylesheet" />
 
@@ -126,6 +130,11 @@
             $('body').addClass('signup-page');
         });
     </script>
+    <div id="google_translate_element"></div><script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'hi,kn,ml', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+        }
+    </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- Autosize Plugin Js -->
     <script src="{{ URL::asset('bsb/plugins/autosize/autosize.js')}}"></script>

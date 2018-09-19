@@ -43,7 +43,7 @@
 
 </head>
 
-<body class="theme-blue">
+<body class="theme-teal">
 
 @include('layouts.partials.loader')
 
@@ -85,6 +85,12 @@
 
 
 @section('bottom-scripts')
+    <div id="google_translate_element"></div><script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'hi,kn,ml', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+        }
+    </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <!-- Custom Js -->
     <script src="{{ URL::asset('bsb/js/admin.js')}}"></script>
     <!-- Demo Js -->

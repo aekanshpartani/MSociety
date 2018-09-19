@@ -3,6 +3,11 @@
 @section('title', 'MySoceity - Sign In')
 
 @section('extra-css')
+    <style>
+        body{
+            background-color: teal !important;
+        }
+    </style>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 @stop
 
@@ -81,6 +86,11 @@
             $('body').addClass('login-page');
         });
     </script>
+    <div id="google_translate_element"></div><script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'hi,kn,ml', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+        }
+    </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- Validation Plugin Js -->
     <script src="{{ URL::asset('bsb/plugins/jquery-validation/jquery.validate.js')}}"></script>

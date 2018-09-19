@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Guest;
 use App\Http\Requests\OwnerCreateRequest;
+use App\Mail\OwnerRegister;
 use App\Owner;
 use App\Society;
 use App\SocietyNotifications;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class OwnerController extends Controller
@@ -63,6 +65,8 @@ class OwnerController extends Controller
         $owner->phone_no = $request->get('phone_no');
         $owner->save();
         Session::flash('created_owner', 'Your details have been registered. Wait for manager approval!');
+        $note = new OwnerRegister();
+        Mail::to($user->email)->send($note);
         return redirect('/sign-up');
 
 //        $validated = $request->validated();

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SocietyRegister;
 use App\Society;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class AdminSocietyController extends Controller
@@ -39,6 +41,8 @@ class AdminSocietyController extends Controller
     {
         Society::create($request->all());
         Session::flash('registerd_society', 'Your details has been received. Wait for Approval');
+        $note = new SocietyRegister();
+        Mail::to($request->smanager)->send($note);
         return redirect('society-register');
     }
 
@@ -62,6 +66,7 @@ class AdminSocietyController extends Controller
     public function edit($id)
     {
         $society = Society::findOrFail($id);
+
         return view('admin.society.edit', compact('society'));
     }
 
@@ -86,7 +91,7 @@ class AdminSocietyController extends Controller
      * @param  \App\Society  $society
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Society $society)
+    public function destroy($id)
     {
         $society = Society::findOrFail($id);
         $society->delete();

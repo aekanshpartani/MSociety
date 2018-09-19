@@ -60,7 +60,7 @@
                         {!! Form::close() !!}
 
 
-                        {!! Form::open(['method' => 'DELETE', 'action' => ['AdminSocietyController@destroy', $society->id], 'class'=>'']) !!}
+                        {!! Form::open(['method' => 'DELETE', 'action' => ['AdminSocietyController@destroy', $society->id], 'onsubmit' => 'return ConfirmDelete()', 'class'=>'']) !!}
 
                         <div class="form-group">
                             {!! Form::submit('Delete Society', ['class' => 'btn btn-danger']) !!}
@@ -79,6 +79,7 @@
 
 @section('extra-scripts')
 
+    @include('layouts.partials.confirmdelete')
     <!-- Autosize Plugin Js -->
     <script src="{{ URL::asset('bsb/plugins/autosize/autosize.js')}}"></script>
 
